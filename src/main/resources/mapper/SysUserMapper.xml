@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cainchao.blogs.mapper.SysUserMapper">
+
+	<resultMap id="sysUser" type="com.cainchao.blogs.entity.result.SysUser">
+		<result column="login_name" property="loginName"/>
+		<result column="pwd" property="password"/>
+		<result column="salt" property="salt"/>
+		<result column="valid" property="valid"/>
+	</resultMap>
+
+	<!--根据名字获取有效的用户信息-->
+	<select id="queryInfoByUserName" flushCache="true" parameterType="java.lang.String" resultMap="sysUser">
+		SELECT id,login_name,pwd,salt,valid FROM sys_user WHERE  `login_name` = #{loginName} AND valid = 1
+	</select>
+
+
+	
+</mapper>
